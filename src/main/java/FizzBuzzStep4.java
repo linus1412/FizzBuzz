@@ -23,15 +23,6 @@ public class FizzBuzzStep4 {
 
     }
 
-    private static Map<String, Long> countElementsByFizzBuzzType(List<Object> fizzBuzzElements) {
-        return fizzBuzzElements.stream()
-            .collect(groupingBy(elementName(), counting()));
-    }
-
-    private static Function<Object, String> elementName() {
-        return o -> o instanceof String ? o.toString() : "integer";
-    }
-
     private static List<Object> convertNumbersToFizzBuzzElements(int from, int to) {
         return rangeClosed(from, to).mapToObj(number -> {
             if (("" + number).contains("3")) {
@@ -46,11 +37,21 @@ public class FizzBuzzStep4 {
         }).collect(toList());
     }
 
+    private static Map<String, Long> countElementsByFizzBuzzType(List<Object> fizzBuzzElements) {
+        return fizzBuzzElements.stream()
+            .collect(groupingBy(elementName(), counting()));
+    }
+
     private static String fizzBuzzString(List<Object> elements) {
         return elements.stream()
             .map(Object::toString)
             .collect(joining(" "));
     }
+
+    private static Function<Object, String> elementName() {
+        return o -> o instanceof String ? o.toString() : "integer";
+    }
+
 
     private static String total(Map<String, Long> counts, String name) {
         return format("%s: %d", name, counts.get(name));
