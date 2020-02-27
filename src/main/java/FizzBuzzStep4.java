@@ -11,7 +11,7 @@ public class FizzBuzzStep4 {
     public static String forRange(int from, int to) {
 
         final var fizzBuzzElements = convertNumbersToFizzBuzzElements(from, to);
-        final var elementCounts = elementCounts(fizzBuzzElements);
+        final var elementCounts = countElementsByFizzBuzzType(fizzBuzzElements);
 
         return format("%s %s %s %s %s %s", fizzBuzzString(fizzBuzzElements),
             total(elementCounts, "fizz"),
@@ -23,7 +23,7 @@ public class FizzBuzzStep4 {
 
     }
 
-    private static Map<String, Long> elementCounts(List<Object> fizzBuzzElements) {
+    private static Map<String, Long> countElementsByFizzBuzzType(List<Object> fizzBuzzElements) {
         return fizzBuzzElements.stream()
             .collect(groupingBy(elementName(), counting()));
     }
