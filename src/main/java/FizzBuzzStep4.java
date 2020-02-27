@@ -52,7 +52,6 @@ public class FizzBuzzStep4 {
         return o -> o instanceof String ? o.toString() : "integer";
     }
 
-
     private static String total(Map<String, Long> counts, String name) {
         return format("%s: %d", name, counts.get(name));
     }
